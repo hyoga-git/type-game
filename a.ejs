@@ -1,0 +1,8 @@
+<% for (let i = 0; i < Math.min(ranking.length, 10); i++) { %>
+    <% const rank = ranking[i]; %>
+    <div class="ranking">
+        <span class="rank-column"><%= i + 1 %>位:</span>
+        <span class="name"><%= rank.name %></span>
+        <span class="time"><%= rank.time %></span>
+    </div>
+<% } %>
