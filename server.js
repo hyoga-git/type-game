@@ -15,6 +15,7 @@ const connection = mysql.createConnection({
     user: "root",
     password: "0603",
     database: "ranking",
+    port:3308
 });
 
 app.get("/", (req, res) => {
@@ -72,6 +73,6 @@ connection.query(
     console.log(`名前: ${playerName} レコード: ${timeElapsed} `);
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log("サーバー起動");
 });
