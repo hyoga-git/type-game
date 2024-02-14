@@ -1,6 +1,7 @@
 const btn = document.getElementById('btn');
 const input = document.getElementById('input');
 const time = document.getElementById('time');
+const type = document.getElementById('type');
 
 function ramdamNumber(){
     return Math.floor(Math.random() * 46) + 1; 
