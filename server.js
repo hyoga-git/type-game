@@ -56,16 +56,6 @@ app.post("/submit-result", (req, res) => {
                 return res.status(500).send("Internal Server Error");
             }
 
-            connection.query(
-                "SELECT * FROM ranking ORDER BY time ASC",
-                (error, results) => {
-                    if (error) {
-                        console.log("データベース内を表示できません。", error);
-                        return res.status(500).send("Internal Server Error");
-                    }
-                    console.log(results);
-                }
-            );
         }
     );
 
