@@ -1,6 +1,16 @@
 const btn = document.getElementById('btn');
 const input = document.getElementById('input');
 const time = document.getElementById('time');
+const type = document.getElementById("type");
+
+document.addEventListener('keydown',function(event) {
+    if (event.key === 'Enter') {
+        enter();
+        document.getElementById('type').value="";
+        
+    }
+});
+
 
 function ramdamNumber(){
     return Math.floor(Math.random() * 46) + 1; 
@@ -96,14 +106,16 @@ input.innerHTML = questions[index];
 function enter() {
     const type = document.getElementById('type').value;
     console.log(type);
+   
 
     const ques = questions[index];
     if (type === ques) {
         alert("正解");
-        document.getElementById('type').value = '';
-        index=ramdamNumber();
+        index = ramdamNumber();
+        document.getElementById('type').value = ''; // 入力フォームの値を空に設定
         
-        if (atai <=3) {
+        
+        if (atai <= 3) {
             input.innerHTML = questions[index];
             document.getElementById('type').value = '';
             atai++
@@ -114,14 +126,12 @@ function enter() {
     } else {
         alert("もう一度入力してください");
         input.innerHTML = questions[index];
-        document.getElementById('type').value = '';
+        document.getElementById('type').value = ''; // 入力フォームの値を空に設定
     }
 }
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        enter();
-    }
-});
+
+
+
 
 
 function stop() {
