@@ -74,6 +74,18 @@ connection.query(
     console.log(`名前: ${playerName} レコード: ${timeElapsed} `);
 });
 
+connection.query(
+    "SELECT * FROM ranking ORDER BY time ASC",
+    (error, results) => {
+        if (error) {
+            console.error("データベース内を表示できませんでした。", error);
+            return res.status(500).send("Internal Server Error");
+        }
+        res.render("ranking.ejs", { ranking: results });
+    }
+);
+
+
 app.listen(process.env.PORT || PORT, () => {
     console.log("サーバー起動");
 });
