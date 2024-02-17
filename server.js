@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-const mysql = require("mysql");
 const bodyParser = require("body-parser");
+const pool=require("./db");
 
 app.use(express.static("views"));
 app.use(express.urlencoded({ extended: false }));
@@ -10,13 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-const connection = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    port: process.env.MYSQL_PORT
-});
+
 
 app.get("/", (req, res) => {
     res.render("home.ejs");
@@ -31,7 +25,7 @@ app.get("/type", (req, res) => {
 app.get("/ranking", (req, res) => {
     console.log("ranking表示");
 
-    connection.query(
+    pool.query(
         "SELECT * FROM ranking ORDER BY time ASC",
         (error, results) => {
             if (error) {
@@ -47,7 +41,7 @@ app.post("/submit-result", (req, res) => {
     const playerName = req.body.playerName;
     const timeElapsed = req.body.timeElapsed;
 
-    connection.query(
+    pool.query(
         'INSERT INTO ranking (name, time) VALUES (?, ?)',
         [playerName, timeElapsed],
         (error, results) => {
