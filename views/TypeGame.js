@@ -1,23 +1,27 @@
+const btn = document.getElementById('btn');
 const input = document.getElementById('input');
 const time = document.getElementById('time');
-const typeInput = document.getElementById("typeInput");
+const type = document.getElementById("type");
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown',function(event) {
     if (event.key === 'Enter') {
         enter();
+     　document.getElementById('type').value="";
+        
     }
 });
 
-function randomIndex() {
+
+function ramdamNumber(){
     return Math.floor(Math.random() * 46) + 1; 
 }
 
-let count = 0;
-let index = randomIndex();
+let atai=0;
+let index = ramdamNumber()
 let elapsed = 0;
 let interval = null;
 
-function updateTime() {
+function uptime() {
     const ms = elapsed % 1000; 
     const s = Math.floor(elapsed / 1000) % 60;
     const m = Math.floor(elapsed / (1000 * 60)) % 60;
@@ -30,17 +34,18 @@ function updateTime() {
     time.innerHTML = `${hStr}:${mStr}:${sStr}.${msStr}`;
 }
 
-function startTimer() {
+function timeset() {
     if (interval !== null) {
         return;
     }
 
     let start = new Date();
+    console.log(start);
     interval = setInterval(() => {
         let now = new Date();
         elapsed += now - start;
         start = now;
-        updateTime();
+        uptime();
     }, 10);
 }
 
@@ -94,42 +99,51 @@ const questions = [
     "おきなわけん"
 ];
 
+
+
 input.innerHTML = questions[index];
 
 function enter() {
-    const typedValue = typeInput.value;
-    console.log(typedValue);
+    const type = document.getElementById('type').value;
+    console.log(type);
+   
 
-    const question = questions[index];
-    if (typedValue === question) {
+    const ques = questions[index];
+    if (type === ques) {
         alert("正解");
-        index = randomIndex();
-        typeInput.value = ''; 
-        if (count <= 3) {
+        index = ramdamNumber();
+        document.getElementById('type').value = ''; // 入力フォームの値を空に設定
+        
+        
+        if (atai <= 3) {
             input.innerHTML = questions[index];
-            typeInput.value = '';
-            count++;
+            document.getElementById('type').value = '';
+            atai++
         } else {
-            sendData(); 
-            endGame();
+            sendData();  // 全ての質問に回答したらデータを送信
+            ok();
         }
     } else {
         alert("もう一度入力してください");
         input.innerHTML = questions[index];
-        typeInput.value = ''; 
+        document.getElementById('type').value = ''; // 入力フォームの値を空に設定
     }
 }
 
-function stopTimer() {
+
+
+
+
+function stop() {
     clearInterval(interval);
     interval = null;
 }
 
-function endGame() {
-    typeInput.value = '';
-    typeInput.remove();
+function ok() {
+    document.getElementById('type').value = '';
+    type.remove();
     btn.remove();
-    stopTimer();
+    stop();
     input.innerHTML = "終了";
 }
 
@@ -143,8 +157,9 @@ function sendData() {
     const sStr = s.toString().padStart(2, '0');
     const mStr = m.toString().padStart(2, '0');
     const hStr = h.toString().padStart(2, '0');
-    const timeElapsed = `${hStr}:${mStr}:${sStr}.${msStr}`;
-    const playerName = prompt("あなたの名前を入力してください：");
+    const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
+    const timeElapsed = time;
+    const playerName = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
 
     axios.post("https://type-game.onrender.com/submit-result", { playerName, timeElapsed })
         .then(response => {
