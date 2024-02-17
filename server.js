@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const pool = require("./db");
-
+const axios=require("axios");
 app.use(express.static("views"));
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
@@ -37,7 +37,7 @@ app.post("/submit-result", (req, res) => {
     const timeElapsed = req.body.timeElapsed;
 
     pool.query(
-        'INSERT INTO ranking (name, time) VALUES ($1, $2)',
+        'INSERT INTO ranking (name,time) VALUES ($1, $2)',
         [playerName, timeElapsed],
         (error, results) => {
             if (error) {
