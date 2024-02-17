@@ -159,7 +159,7 @@ function sendData() {
     const hStr = h.toString().padStart(2, '0');
     const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
     const timeElapsed = time;
-    const playerName = document.getElementById('playerName').value; // フォームからプレイヤー名を取得
+    const playerName = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
 
     axios.post("/submit-result", { playerName, timeElapsed })
         .then(response => {
@@ -169,4 +169,3 @@ function sendData() {
             console.error(error);
         });
 }
-
