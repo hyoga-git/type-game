@@ -165,7 +165,7 @@ function sendData() {
 
 
 
-    axios.post("https://type-game.onrender.com",{ playerName, timeElapsed })
+    axios.post("/submit-result",{ playerName, timeElapsed })
 
         .then(response => {
             console.log(response.data);
