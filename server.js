@@ -32,7 +32,7 @@ app.get("/ranking", (req, res) => {
     );
 });
 
-app.post("/submit-result", (req, res) => {
+app.post("https://type-game.onrender.com", (req, res) => {
     const playerName = req.body.playerName;
     const timeElapsed = req.body.timeElapsed;
 
