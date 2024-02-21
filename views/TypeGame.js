@@ -159,8 +159,9 @@ function sendData() {
     const hStr = h.toString().padStart(2, '0');
     const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
     const timeElapsed = time;
-    console.log(time);
     const playerName = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
+    console.log(time);
+    console.log(playerName)
 
 
     axios.post("/submit-result", { playerName, timeElapsed })
