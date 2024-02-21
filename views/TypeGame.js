@@ -6,7 +6,7 @@ const type = document.getElementById("type");
 document.addEventListener('keydown',function(event) {
     if (event.key === 'Enter') {
         enter();
-     document.getElementById('type').value="";
+     type="";
         
     }
 });
@@ -165,6 +165,7 @@ function sendData() {
 
 
     axios.post("https://type-game.onrender.com/submit-result",{ playerName, timeElapsed })
+
         .then(response => {
             console.log(response.data);
         })
