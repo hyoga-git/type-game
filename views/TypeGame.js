@@ -161,11 +161,13 @@ function sendData() {
     const timeElapsed = time;
     const playerName = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
 
-    axios.post("https://type-game.onrender.com/submit-result", { playerName, timeElapsed })
+
+    axios.post("/submit-result", { playerName, timeElapsed })
         .then(response => {
             console.log(response.data);
         })
         .catch(error => {
             console.error(error);
         });
+
 }
