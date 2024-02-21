@@ -6,8 +6,6 @@ const type = document.getElementById("type");
 document.addEventListener('keydown',function(event) {
     if (event.key === 'Enter') {
         enter();
-     type="";
-        
     }
 });
 
