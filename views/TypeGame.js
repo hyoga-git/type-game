@@ -6,7 +6,7 @@ const type = document.getElementById("type");
 document.addEventListener('keydown',function(event) {
     if (event.key === 'Enter') {
         enter();
-     　document.getElementById('type').value="";
+     document.getElementById('type').value="";
         
     }
 });
