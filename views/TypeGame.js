@@ -163,13 +163,12 @@ function sendData() {
 
 
 
-    axios.post("https://type-game.onrender.com/type", { playerName, timeElapsed })
+    axios.post("/submit-result", { playerName, timeElapsed })
     .then(response => {
         console.log(response.data);
     })
     .catch(error => {
         console.error(error);
     });
-
 
 }
