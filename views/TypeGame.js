@@ -159,14 +159,13 @@ function sendData() {
     const hStr = h.toString().padStart(2, '0');
     const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
     const times = time;
-    const player=window.prompt("ユーザー名を入力してください", "");
-
+   
     console.log(times);
-    console.log(player);
 
 
 
-    axios.post("submit-result", { player,times })
+
+    axios.post("submit-result", { times })
     .then(response => {
         console.log(response.data);
     })
