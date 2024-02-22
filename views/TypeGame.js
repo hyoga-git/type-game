@@ -156,14 +156,14 @@ function sendData() {
     const mStr = m.toString().padStart(2, '0');
     const hStr = h.toString().padStart(2, '0');
     const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
-    const timeElapsed = time;
-    const playerName = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
-    console.log(time);
-    console.log(playerName);
+    const times = time;
+    const player = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
+    console.log(times);
+    console.log(player);
 
 
 
-    axios.post("submit-result", { playerName,time })
+    axios.post("submit-result", { player,times })
     .then(response => {
         console.log(response.data);
     })
