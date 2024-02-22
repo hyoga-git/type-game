@@ -37,13 +37,13 @@ app.post("/submit-result", (req, res) => {
     const timeElapsed = req.body.time;
 
     pool.query(
-        'INSERT INTO ranking (name,time) VALUES ($1,)',[timeElapsed],
+        'INSERT INTO ranking (name,time) VALUES ($1,$2)',[playerName,timeElapsed],
         (error, results) => {
             if (error) {
                 console.log("データベースにデータを入れれませんでした.", error);
                 return res.status(500).send("Internal Server Error");
             }
-            console.log(`レコード: ${timeElapsed} `);
+            console.log(`名前: ${playerName} レコード: ${timeElapsed} `);
             res.status(200).send("OK");
         }
     );
