@@ -33,7 +33,7 @@ app.get("/ranking", (req, res) => {
 });
 
 app.post("/submit-result", (req, res) => {
-    const Name = req.body.player;
+    const player = req.body.player;
     const times = req.body.times;
 
     pool.query(

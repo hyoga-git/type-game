@@ -3,6 +3,8 @@ const input = document.getElementById('input');
 const time = document.getElementById('time');
 const type = document.getElementById("type");
 
+
+
 document.addEventListener('keydown',function(event) {
     if (event.key === 'Enter') {
         enter();
@@ -157,7 +159,8 @@ function sendData() {
     const hStr = h.toString().padStart(2, '0');
     const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
     const times = time;
-    const player = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
+    const player=window.prompt("ユーザー名を入力してください", "");
+
     console.log(times);
     console.log(player);
 
