@@ -36,16 +36,18 @@ app.get("/ranking", (req, res) => {
 });
 
 app.post("/submit-result", (req, res) => {
+    const playerName = req.body.playerName;
     const times = req.body.times;
+    console.log(playerName);
     console.log(times);
     pool.query(
-        'INSERT INTO ranking (time) VALUES ($1)',[times],
+        'INSERT INTO ranking (name,time) VALUES ($1,$2)',[playerName,times],
         (error, results) => {
             if (error) {
                 console.log("データベースにデータを入れれませんでした.", error);
                 return res.status(500).send("Internal Server Error");
             }
-            console.log(`レコード: ${times} `);
+            console.log(`名前:${playerName} レコード: ${times} `);
             res.status(200).send("OK");
         }
     );

@@ -161,11 +161,11 @@ function sendData() {
     const times = time;
 
     console.log(times);
+    const playerName = prompt("あなたの名前を入力してください："); // プレイヤーの名前を取得するための適切な方法を使用する方が良いでしょう
 
 
 
-
-    axios.post("submit-result",{times})
+    axios.post("submit-result",{playerName,times})
     .then(response => {
         console.log(response.data);
     })
