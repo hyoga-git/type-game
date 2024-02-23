@@ -42,7 +42,7 @@ app.post("/submit-result", (req, res) => {
                 console.log("データベースにデータを入れれませんでした.", error);
                 return res.status(500).send("Internal Server Error");
             }
-            console.log(`名前: ${playerName} レコード: ${timeElapsed} `);
+            console.log(`レコード: ${times} `);
             res.status(200).send("OK");
         }
     );
