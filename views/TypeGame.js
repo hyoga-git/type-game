@@ -159,13 +159,13 @@ function sendData() {
     const hStr = h.toString().padStart(2, '0');
     const time = `${hStr}:${mStr}:${sStr}.${msStr}`;
     const times = time;
-   
+
     console.log(times);
 
 
 
 
-    axios.post("submit-result", { times })
+    axios.post("submit-result",{times})
     .then(response => {
         console.log(response.data);
     })
