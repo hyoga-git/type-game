@@ -4,7 +4,9 @@ const PORT = 3000;
 const pool = require("./db");
 const axios=require("axios");
 app.use(express.static("views"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
