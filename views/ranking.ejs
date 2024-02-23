@@ -14,7 +14,7 @@
     <div class="ranking">
         <h1 class="itiran">ランキング一覧</h1>
         <h6>　　　TOP10位まで表示されます。</h6>
-    <% for (let i = 0; i < Math.min(ranking.length, 10); i++) { %>
+    <% for (let i = 0; i < Math.min(ranking.length, 10000000); i++) { %>
         <% const rank = ranking[i]; %>
         <div class="ranking">
             <span class="border"><%= i + 1 %>位:</span>
