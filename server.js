@@ -34,9 +34,9 @@ app.get("/ranking", (req, res) => {
 
 app.post("/submit-result", (req, res) => {
     const times = req.body.times;
-
+    console.log(times);
     pool.query(
-        'INSERT INTO ranking (time) VALUES ($1)',[,times],
+        'INSERT INTO ranking (time) VALUES ($1)',[times],
         (error, results) => {
             if (error) {
                 console.log("データベースにデータを入れれませんでした.", error);
